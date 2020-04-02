@@ -22,22 +22,42 @@ $_SESSION['gender']= $gender;
 $_SESSION['designation']= $designation;
 $_SESSION['department']= $department;
 
+
+
+
 if($errorCount > 0){
     //redirect back and display error
     $_SESSION['error'] = 'You have '. $errorCount .' errors In your form submission';
    header("Location: register.php");
 }else{
     //continue
-    echo "Success";
+    $allUsers = scandir("db/users/");
+
+
+    $countAllUsers = count($allUsers);
+
+
+    $newUserId = ($countAllUsers - 1);
+
+    $userObject = [
+    'id'=>$newUserId,
+    'first_name'=>$first_name,
+    'last_name'=>$last_name,
+    'email'=>$email,
+    'password'=> password_hash($password, PASSWORD_DEFAULT), //password hashing
+    'gender'=>$gender,
+    'designation'=>$designation,
+    'department'=>$department
+    ];
+
+    //saving the data into the db (folder)
+    file_put_contents("db/users/".$email. ".json", json_encode($userObject));
+    $_SESSION["message"] = "Registration Successful, you can now login".$first_name;
+    header("Location: login.php"); 
 }
 
 
 
-//saving the data into the db (folder)
-
-
-
-//
 
 
 ?>

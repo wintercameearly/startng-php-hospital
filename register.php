@@ -24,7 +24,7 @@
         <p>
             <label for="last_name">Last Name</label>
             <input 
-            <?php 
+                <?php 
                     if(isset($_SESSION['last_name'])){
                         echo "value=" .$_SESSION['last_name'];
                     }
@@ -34,11 +34,11 @@
         <p>
             <label for="email">Email</label>
             <input
-            <?php 
-                    if(isset($_SESSION['email'])){
-                        echo "value=" .$_SESSION['email'];
-                    }
-                ?>
+                <?php 
+                        if(isset($_SESSION['email'])){
+                            echo "value=" .$_SESSION['email'];
+                        }
+                    ?>
             type="email" name="email" placeholder= "Email" >
         </p>
         <p>
@@ -46,13 +46,19 @@
             <select name="gender" >
                 <option value="">Select One</option>
                 <option 
-                <?php 
-                    if(isset($_SESSION['gender'])&& $_SESSION['gender']=='Male'){
-                        echo "selected";
-                    }
-                ?>
+                    <?php 
+                        if(isset($_SESSION['gender'])&& $_SESSION['gender']=='Male'){
+                            echo "selected";
+                        }
+                    ?>
                 >Male</option>
-                <option >Female</option>
+                <option 
+                    <?php 
+                        if(isset($_SESSION['gender'])&& $_SESSION['gender']=='Male'){
+                            echo "selected";
+                        }
+                    ?>
+                >Female</option>
             </select>
         </p>
         <p>

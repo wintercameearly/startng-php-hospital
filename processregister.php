@@ -50,14 +50,19 @@ if($errorCount > 0){
     'department'=>$department
     ];
 
+    for ($counter =0; $counter <= $countAllUsers; $counter++){
+        $currentUser = $allUsers[$counter];
+        
+        if($currentUser == $email. ".json"){
+            $_SESSION['error']="Registration failed , User already exists ";
+            header("Location: register.php");
+            die();
+        }
+    //}
     //saving the data into the db (folder)
     file_put_contents("db/users/".$email. ".json", json_encode($userObject));
-    $_SESSION["message"] = "Registration Successful, you can now login".$first_name;
+    $_SESSION["message"] = "Registration Successful, you can now login ".$first_name;
     header("Location: login.php"); 
-}
-
-
-
-
+};
 
 ?>

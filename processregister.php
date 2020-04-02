@@ -58,11 +58,11 @@ if($errorCount > 0){
             header("Location: register.php");
             die();
         }
-    //}
+    }
     //saving the data into the db (folder)
     file_put_contents("db/users/".$email. ".json", json_encode($userObject));
     $_SESSION["message"] = "Registration Successful, you can now login ".$first_name;
     header("Location: login.php"); 
-};
 
+}
 ?>

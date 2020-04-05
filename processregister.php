@@ -27,7 +27,14 @@ $_SESSION['department']= $department;
 
 if($errorCount > 0){
     //redirect back and display error
-    $_SESSION['error'] = 'You have '. $errorCount .' errors In your form submission';
+    $session_error = "You have " . $errorCount ." error";
+    if($errorCount > 1){
+        $session_error .= "s";
+
+    };
+
+    $session_error .= " in your form submission";
+    $_SESSION['error'] = $session_error;
    header("Location: register.php");
 }else{
     //continue

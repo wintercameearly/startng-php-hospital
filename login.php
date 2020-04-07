@@ -1,4 +1,9 @@
-<?php include_once('lib/header.php'); session_start(); ?> 
+<?php include_once('lib/header.php'); 
+   if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
+        print_r($_SESSION['loggedIn']);
+        //redirect to dashboard
+        header("Location: dashboard.php");}
+?> 
 Login Form here 
 
 <p>
@@ -37,9 +42,5 @@ Login Form here
         <button type="submit">Login</button>
         </p>
     </form>
-
-
-
-
 
 <?php include_once('lib/footer.php'); ?>

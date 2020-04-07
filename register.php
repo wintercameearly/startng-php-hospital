@@ -1,6 +1,15 @@
-<?php session_start(); include_once('lib/header.php');   ?> 
+<?php 
+if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
+    print_r($_SESSION['loggedIn']);
+    //redirect to dashboard
+    header("Location: dashboard.php");
+}
+include_once('lib/header.php');   
+?> 
     <p><strong> Welcome, Please Register</strong></p>
     <p>All Fields are required</p>
+
+
 <h3>Register</h3>
     <form action="processregister.php" method="post">
     <p>

@@ -1,6 +1,6 @@
 <?php 
-session_start();
 
+session_start();
 $errorCount = 0;
 
 $email = $_POST['email'] != "" ? $_POST['email'] : $errorCount++;
@@ -25,14 +25,26 @@ if($errorCount > 0){
 }else{
     $allUsers = scandir("db/users/");
     $countAllUsers = count($allUsers);
-
     for ($counter =0; $counter <= $countAllUsers; $counter++){
         $currentUser = $allUsers[$counter];
-        
         if($currentUser == $email. ".json"){
         //Check for password
-            echo "Email found, Password incorrect";
-        }
+            $userString = file_get_contents("db/users/".$currentUser);
+            $userObject = json_decode($userString);
+            $passwordFromDB = $userObject->password;
+
+            $passwordFromUser = password_verify($password, $passwordFromDB);
+
+            if($passwordFromDB == $passwordFromUser){
+                //entering dashboard
+                $_SESSION['loggedIn']=$userObject->id;
+                $_SESSION['fullname']=$userObject->first_name . " " . $userObject->last_name;
+                $_SESSION['role']=$userObject->designation;
+                header("Location: dashboard.php");
+                die();
+            }
+            
+        }    
     }
     $_SESSION['error'] = 'Invalid Email or Password';
     header("Location: login.php");

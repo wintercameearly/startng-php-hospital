@@ -1,7 +1,5 @@
 <?php 
-
 session_start();
-
 $errorCount = 0;
 
 //Verification and Validation

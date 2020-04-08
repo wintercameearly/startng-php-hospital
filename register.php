@@ -72,7 +72,7 @@ if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
         </p>
         <p>
             <label for="password">Password</label>
-            <input type="password" name="password"  placeholder= "Password" >
+            <input type="password" name="password"  placeholder= "Password" required >
         </p>
 
         <p>

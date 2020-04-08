@@ -30,18 +30,14 @@ if($errorCount > 0){
             //sending an email via mail function
             $token = ""; 
 
-            $alphabets = ['a','b','c','d','e','f','g','h','A','B','C','D','E','F','G','H'];
+            $alphabets = ['a','b','c','d','e','f','g','h','i','j','k','l','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O'];
 
-            for($i = 0 ; $i < 26 ; $i++){
+            for($i = 0 ; $i < 30 ; $i++){
 
             $index = mt_rand(0,count($alphabets)-1);
             $token .= $alphabets[$index];
             }
 
-
-            $token = "hgsdfghjkkl";
-            
-            
             
             $subject = "Password Reset Link";
             $message = "A password request reset has been initiated from your account, if you did not initiate this request , please ignore this message, otherwise visit : localhost/snh/reset.php?token=".$token;

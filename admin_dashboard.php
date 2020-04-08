@@ -1,17 +1,14 @@
-<?php 
-include_once('lib/header.php');   
-if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
-    print_r($_SESSION['loggedIn']);
-    //redirect to dashboard
-    header("Location: dashboard.php");
+<?php include_once('lib/header.php') ;
+
+if(!isset($_SESSION['isActive'])){
+    header("Location: admin.php");
 }
-?> 
-    <p><strong> Welcome, Please Register</strong></p>
-    <p>All Fields are required</p>
 
+?>
+<h3>Admin Page</h3>
 
-<h3>Register</h3>
-    <form action="processregister.php" method="post">
+<h3>Add New User</h3>
+    <form action="adminfunctions.php" method="post">
     <p>
     <?php 
         if(isset($_SESSION['error'])&& !empty($_SESSION['error'])){
@@ -94,8 +91,18 @@ if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
             type="text" name="department"  placeholder="Department" >
         </p>
         <p>
-        <button type="submit">Register</button>
+        <button type="submit">Add</button>
         </p>
     </form>
+    <p>
+    <?php 
+        if(isset($_SESSION['message'])&& !empty($_SESSION['message'])){
+            echo "<span style='color:green'>".$_SESSION['message']. "<span/>";
+            session_destroy();
+        }
+    ?>
+    </p>
 
-<?php include_once('lib/footer.php');   ?> 
+
+
+<a href="logout.php">Logout</a>

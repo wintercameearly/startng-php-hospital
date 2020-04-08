@@ -1,8 +1,11 @@
 <?php include_once('lib/header.php'); 
    if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
-        print_r($_SESSION['loggedIn']);
-        //redirect to dashboard
-        header("Location: dashboard.php");}
+        if($_SESSION['role']=='Medical Team(MT)'){
+            header("Location: med_team.php");
+        }else{
+            header("Location:patient.php");}
+        
+    }
 ?> 
 Login Form here 
 

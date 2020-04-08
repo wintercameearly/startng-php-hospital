@@ -36,11 +36,35 @@ if($errorCount > 0){
             $passwordFromUser = password_verify($password, $passwordFromDB);
 
             if($passwordFromDB == $passwordFromUser){
-                //entering dashboard
+                //Timing
+                $currentTimeinSecs = time();
+                    $currentDate = date('Y-m-d', $currentTimeinSecs); 
+                    $currentTime=date("h:i a"); 
+                    $timingObject =[
+                        'time'=>$currentTime,
+                        'date'=>$currentDate
+                    ];
+
+                //Login values
                 $_SESSION['loggedIn']=$userObject->id;
+                $_SESSION['email']=$userObject->email;
                 $_SESSION['fullname']=$userObject->first_name . " " . $userObject->last_name;
                 $_SESSION['role']=$userObject->designation;
-                header("Location: dashboard.php");
+                $_SESSION['department']=$userObject->department;
+                $_SESSION['registrationdate']=$userObject->registrationdate;
+                //Login based on designation/Access Level
+                if($_SESSION['role']=='Medical Team(MT)') {
+                    //php function to measure time 
+                    
+                    file_put_contents("db/logs/".$email. ".json",json_encode($timingObject));
+
+                    header("Location: med_team.php");
+                }elseif($_SESSION['role']=='Patients'){
+                    //php function to measure time
+
+                    file_put_contents("db/logs/".$email. ".json", json_encode($timingObject));
+                    header("Location: patients.php");   
+                }
                 die();
             }
             

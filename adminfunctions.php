@@ -1,5 +1,4 @@
 <?php 
-session_start();
 
 $first_nameErr =0;
 $last_nameErr = 0;
@@ -93,14 +92,15 @@ if(!$name_matches[0]){
         
         if($currentUser == $email. ".json"){
             $_SESSION['error']="Registration failed , User already exists ";
-            header("Location: register.php");
+            header("Location: admin_dashboard.php");
             die();
         }
     }
     //saving the data into the db (folder)
     file_put_contents("db/users/".$email. ".json", json_encode($userObject));
-    $_SESSION["message"] = "Registration Successful, you can now login ".$first_name;
-    header("Location: login.php"); 
-
+    $_SESSION["message"] = "Addition Successful, User can now login ";
+    header("Location: admin_dashboard.php");
 }
+
+
 ?>

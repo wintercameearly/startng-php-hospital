@@ -7,10 +7,6 @@ if($_SESSION['role']!='Patients'){
 <h3>Patients Page</h3>
 
 
-
-
-
-
 <?php 
 include_once("lib/footer.php")
 ?>

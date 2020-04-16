@@ -1,4 +1,5 @@
 <?php include_once('lib/header.php'); 
+
    if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
         if($_SESSION['role']=='Medical Team(MT)'){
             header("Location: med_team.php");
@@ -22,7 +23,7 @@ Login Form here
     <p>
     <?php 
         if(isset($_SESSION['error'])&& !empty($_SESSION['error'])){
-            echo $_SESSION['error'];
+            echo "<span style='color:red'>".$_SESSION['error']. "<span/>";
             session_destroy();
         }
     ?>

@@ -38,10 +38,9 @@ if($errorCount > 0){
             if($passwordFromDB == $passwordFromUser){
 
                 //Timing
-                //$currentTimeinSecs = time();
-                    //$currentDate = date('Y-m-d', $currentTimeinSecs); 
-                    //$currentTime=date("h:i a"); 
-
+                $currentTimeinSecs = time();
+                    $currentDate = date('Y-m-d', $currentTimeinSecs); 
+                    $currentTime=date("h:i a"); 
                     
                     //Create a  timing object
                     $timingObject =[
@@ -59,18 +58,19 @@ if($errorCount > 0){
                 $_SESSION['registrationdate']=$userObject->registrationdate;
                 //Login based on designation/Access Level
                 if($_SESSION['role']=='Medical Team(MT)') {
-                    //
+                    
                     //if(empty($logString)){
+
                     file_put_contents("db/logs/".$email. ".json",json_encode($timingObject));
+
                     //}else{
                     //$fp = fopen("db/logs/".$email. ".json",'a');
                     //fwrite($fp, $timingObject);
                     //fclose($fp);
                     //}
+
                     header("Location: med_team.php");
                 }elseif($_SESSION['role']=='Patients'){
-                    //
-
                     file_put_contents("db/logs/".$email. ".json", json_encode($timingObject));
                     header("Location: patients.php");   
                 }

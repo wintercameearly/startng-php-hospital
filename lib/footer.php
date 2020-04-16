@@ -16,6 +16,7 @@
         <a href="patients.php">Patients</a> |
         <a href="logout.php">Logout</a> |
         <?php } ?>
+    <a href="reset.php">Reset</a> |
     <a href="forgot.php">Forgot Password</a> |    
     
     </p>

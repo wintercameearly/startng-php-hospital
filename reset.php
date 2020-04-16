@@ -4,7 +4,7 @@ include_once('lib/header.php');
 
 ///check if token is set
 
-if(!isset($_GET['token']) && !isset($_SESSION['token'])){
+if(!$_SESSION['loggedIn'] && !isset($_GET['token']) && !isset($_SESSION['token'])){
     $_SESSION['error']="You are not authorized to view that page ";
     header("Location: login.php");
 }
@@ -21,6 +21,7 @@ if(!isset($_GET['token']) && !isset($_SESSION['token'])){
             }
         ?>
         </p>
+        <?php  if(!$_SESSION['loggedIn']){ ?>
         <input 
             <?php 
                 if(isset($_SESSION['token'])){
@@ -30,6 +31,7 @@ if(!isset($_GET['token']) && !isset($_SESSION['token'])){
                 }
             ?>
         type="hidden" name='token' value= "<?php echo $_GET['token'] ?>">
+            <?php } ?>
         <p>
             <label for="email">Email</label>
             <input 

@@ -4,8 +4,12 @@ session_start();
 $errorCount = 0;
 
 
+if(!$_SESSION['loggedIn']){
+    $token = $_POST['token'] != "" ? $_POST['token'] : $errorCount++;
 
-$token = $_POST['token'] != "" ? $_POST['token'] : $errorCount++;
+}
+
+
 $email = $_POST['email'] != "" ? $_POST['email'] : $errorCount++;
 $password = $_POST['password'] != "" ? $_POST['password'] : $errorCount++;
 

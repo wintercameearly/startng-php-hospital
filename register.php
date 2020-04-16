@@ -1,5 +1,6 @@
 <?php 
-include_once('lib/header.php');   
+include_once('lib/header.php');  
+require_once('functions/alert.php');
 if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
     print_r($_SESSION['loggedIn']);
     //redirect to dashboard
@@ -12,14 +13,7 @@ if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
 
 <h3>Register</h3>
     <form action="processregister.php" method="post">
-    <p>
-    <?php 
-        if(isset($_SESSION['error'])&& !empty($_SESSION['error'])){
-            echo $_SESSION['error'];
-            session_destroy();
-        }
-    ?>
-    </p>
+        <?php message(); error(); ?>
         <p>
             <label for="first_name">First Name</label>
             <input 

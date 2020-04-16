@@ -6,7 +6,7 @@ $errorCount = 0;
 
 if(!$_SESSION['loggedIn']){
     $token = $_POST['token'] != "" ? $_POST['token'] : $errorCount++;
-
+    $_SESSION['token'] =$token;
 }
 
 
@@ -33,12 +33,22 @@ if($errorCount > 0){
     for ($counter = 0; $counter < $countAllTokens; $counter++){
         $currentTokenFile = $allUserTokens[$counter];
         if($currentTokenFile == $email. ".json"){
+
             //Check if the current token corresponds to the retrieved token
             $tokenContent = file_get_contents("db/tokens/".$currentTokenFile);
             $tokenObject = json_decode($tokenContent);
             $tokenFromDB = $tokenObject->token;
 
-            if($tokenFromDB == $token){
+            if($_SESSION['loggedIn']){
+                $checkToken = true;
+            }else{
+                $checkToken = $tokenFromDB == $token;
+            }
+
+
+
+            if($checkToken){
+            //if($tokenFromDB == $token){
                 //If the token corresponds, find the user file
                 $allUsers = scandir("db/users");
                 $countAllUsers = count($allUsers);

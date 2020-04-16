@@ -1,17 +1,13 @@
 <?php 
 include_once('lib/header.php');
+require('functions/alert.php')
 ?> 
 
 <h3>Forgot form here</h3>
 <p>Provide the email you registered with</p>
     <form action="processForgot.php" method="post">
         <p>
-        <?php 
-            if(isset($_SESSION['error'])&& !empty($_SESSION['error'])){
-                echo $_SESSION['error'];
-                session_destroy();
-            }
-        ?>
+        <?php error(); ?>
         </p>
         <p>
             <label for="email">Email</label>

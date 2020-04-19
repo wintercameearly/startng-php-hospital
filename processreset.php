@@ -1,4 +1,8 @@
 <?php  
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+require('functions/users.php');
 
 $errorCount = 0;
 
@@ -37,7 +41,14 @@ if($errorCount > 0){
             $tokenObject = json_decode($tokenContent);
             $tokenFromDB = $tokenObject->token;
 
-            if($tokenFromDB == $token){
+            //Add checks for loggedIn user token
+            if(is_user_loggedIn()){
+                $checkToken = true;
+            }else{
+                $checkToken = $tokenFromDB = $token;
+            }
+
+            if($checkToken){
                 //If the token corresponds, find the user file
                 $allUsers = scandir("db/users");
                 $countAllUsers = count($allUsers);
@@ -69,7 +80,7 @@ if($errorCount > 0){
                 }
             }
 
-            die();
+           // die();
         }
     }
 

@@ -1,14 +1,17 @@
 <?php 
 include_once('lib/header.php');  
 require_once('functions/alert.php');
-if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
-    print_r($_SESSION['loggedIn']);
+
+
+if(isset($_SESSION['loggedIn'])){
     //redirect to dashboard
     header("Location: dashboard.php");
 }
 ?> 
-    <p><strong> Welcome, Please Register</strong></p>
-    <p>All Fields are required</p>
+
+
+<p><strong> Welcome, Please Register</strong></p>
+<p>All Fields are required</p>
 
 
 <h3>Register</h3>

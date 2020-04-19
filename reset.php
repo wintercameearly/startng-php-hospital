@@ -5,7 +5,8 @@ require('functions/users.php');
 
 ///check if token is set
 
-if(!is_user_loggedIn() && !is_token_set()){
+if(!$_SESSION['loggedIn'] &&  !isset($_GET['token']) && !isset($_SESSION['token']) ){
+//if(!is_user_loggedIn() && !is_token_set()){
     $_SESSION['error']="You are not authorized to view that page ";
     header("Location: login.php");
 }
@@ -14,8 +15,9 @@ if(!is_user_loggedIn() && !is_token_set()){
 <h3>Reset Password</h3>
 
     <form action="processreset.php" method="post">
-        <?php message(); error(); ?>
-        <?php  if(!is_user_loggedIn()){ ?>
+        <?php //message(); error(); ?>
+        <?php  //if(!is_user_loggedIn()){ ?>
+        <?php  if(!$_SESSION['loggedIn']){?>
         <input 
             <?php 
                 if(isset($_SESSION['token'])){

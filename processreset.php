@@ -1,19 +1,18 @@
 <?php  
-session_start();
 
 $errorCount = 0;
 
 
 if(!$_SESSION['loggedIn']){
     $token = $_POST['token'] != "" ? $_POST['token'] : $errorCount++;
-    $_SESSION['token'] =$token;
+    $_SESSION['token']= $token;
 }
 
 
 $email = $_POST['email'] != "" ? $_POST['email'] : $errorCount++;
 $password = $_POST['password'] != "" ? $_POST['password'] : $errorCount++;
 
-$_SESSION['token']= $token;
+
 $_SESSION['email']= $email;
 
 if($errorCount > 0){
@@ -33,22 +32,12 @@ if($errorCount > 0){
     for ($counter = 0; $counter < $countAllTokens; $counter++){
         $currentTokenFile = $allUserTokens[$counter];
         if($currentTokenFile == $email. ".json"){
-
             //Check if the current token corresponds to the retrieved token
             $tokenContent = file_get_contents("db/tokens/".$currentTokenFile);
             $tokenObject = json_decode($tokenContent);
             $tokenFromDB = $tokenObject->token;
 
-            if($_SESSION['loggedIn']){
-                $checkToken = true;
-            }else{
-                $checkToken = $tokenFromDB == $token;
-            }
-
-
-
-            if($checkToken){
-            //if($tokenFromDB == $token){
+            if($tokenFromDB == $token){
                 //If the token corresponds, find the user file
                 $allUsers = scandir("db/users");
                 $countAllUsers = count($allUsers);
@@ -65,6 +54,7 @@ if($errorCount > 0){
                         
                         file_put_contents("db/users/".$email. ".json", json_encode($userObject));
                         $_SESSION["message"] = "Password Reset Successful, You can now Login";
+
                             /** INFORM USER OF PASSWORD RESET */
                             $subject = "Password Reset Successful";
                             $message = "A password reset has just been carried out on your SNH account. If you didnt initiate the password change , please visit snh.org to RESET ";
@@ -72,6 +62,7 @@ if($errorCount > 0){
                             "CC: nobody@gmail.com";
                             $try = mail($email,$subject,$message,$headers);
                             /**USER INFORM END */
+
                         header("Location: login.php"); 
                         die();
                     }    

@@ -9,7 +9,6 @@ if(!isset($_SESSION['loggedIn'])){
 //To check for login date and time 
 $allLogs = scandir("db/logs/");
 $countLogs = count($allLogs);
-
 for ($counter =0; $counter < $countLogs; $counter++){
     $currentUser = $allLogs[$counter];
     $email = $_SESSION['email'];

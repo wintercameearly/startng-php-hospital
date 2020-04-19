@@ -50,7 +50,7 @@ if($errorCount > 0){
 
             if($try){
                 //Display a Success message
-                $_SESSION['error'] = "Password Reset has been sent to: " .$email;
+                $_SESSION['message'] = "Password Reset has been sent to: " .$email;
                 header("Location: login.php");
             }else{
                 //display an error message 

@@ -6,9 +6,9 @@ require('functions/alert.php')
 <h3>Forgot form here</h3>
 <p>Provide the email you registered with</p>
     <form action="processForgot.php" method="post">
-        <p>
-        <?php error(); ?>
-        </p>
+<p>
+ <?php message(); error(); ?>
+</p>
         <p>
             <label for="email">Email</label>
             <input

@@ -1,4 +1,7 @@
+<?php 
+require_once('functions/users.php');
 
+?>
 
   <p>
     <a href="index.php">Home</a> |
@@ -16,7 +19,9 @@
         <a href="patients.php">Patients</a> |
         <a href="logout.php">Logout</a> |
         <?php } ?>
+
     <a href="reset.php">Reset</a> |
+
     <a href="forgot.php">Forgot Password</a> |    
     
     </p>

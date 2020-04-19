@@ -1,7 +1,8 @@
 <?php include_once('lib/header.php'); 
     require('functions/alert.php');
+    require('functions/users.php');
 
-   if(isset($_SESSION['loggedIn'])&& !empty($_SESSION['loggedIn'])){
+   if(is_user_loggedIn()){
         if($_SESSION['role']=='Medical Team(MT)'){
             header("Location: med_team.php");
         }else{

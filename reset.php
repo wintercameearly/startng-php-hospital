@@ -5,8 +5,8 @@ require('functions/users.php');
 
 ///check if token is set
 
-if(!$_SESSION['loggedIn'] &&  !isset($_GET['token']) && !isset($_SESSION['token']) ){
-//if(!is_user_loggedIn() && !is_token_set()){
+//if(!$_SESSION['loggedIn'] &&  !isset($_GET['token']) && !isset($_SESSION['token']) ){
+if(!is_user_loggedIn() && !is_token_set()){
     $_SESSION['error']="You are not authorized to view that page ";
     header("Location: login.php");
 }

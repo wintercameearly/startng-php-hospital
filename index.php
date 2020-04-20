@@ -3,7 +3,7 @@ include_once('lib/header.php');
 require('functions/alert.php');
 ?> 
     <p>
-        <?php message(); error(); ?>
+        <?php print_alert(); ?>
     </p>
     Welcome to SNG: Hospital for the ignorant <br /><hr />
     <p>This is a speicalist hospital</p>

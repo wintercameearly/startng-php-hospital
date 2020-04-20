@@ -16,7 +16,7 @@ if(isset($_SESSION['loggedIn'])){
 
 <h3>Register</h3>
     <form action="processregister.php" method="post">
-        <?php message(); error(); ?>
+        <?php print_alert();?>
         <p>
             <label for="first_name">First Name</label>
             <input 

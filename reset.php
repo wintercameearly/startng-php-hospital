@@ -1,7 +1,7 @@
 <?php 
 include_once('lib/header.php');
-require('functions/alert.php');
-require('functions/users.php');
+require_once('functions/alert.php');
+require_once('functions/users.php');
 
 ///check if token is set
 
@@ -15,12 +15,12 @@ if(!is_user_loggedIn() && !is_token_set()){
 <h3>Reset Password</h3>
 
     <form action="processreset.php" method="post">
-        <?php //message(); error(); ?>
-        <?php  //if(!is_user_loggedIn()){ ?>
-        <?php  if(!$_SESSION['loggedIn']){?>
+        <?php print_alert(); ?>
+        <?php  if(!is_user_loggedIn()){ ?>
+        <?php  //if(!$_SESSION['loggedIn']){?>
         <input 
             <?php 
-                if(isset($_SESSION['token'])){
+                if(is_token_set_in_session()){
                     echo "value='" .$_SESSION['token'] . "'";
                 }else{
                     echo "value='" .$_GET['token'] . "'";

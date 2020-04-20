@@ -12,7 +12,7 @@
 Login Form here 
 
 <p>
- <?php message(); error(); ?>
+ <?php print_alert(); ?>
 </p>
 <h3>Login</h3>
 <form action="processlogin.php" method="post">

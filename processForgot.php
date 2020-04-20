@@ -1,5 +1,8 @@
 <?php 
-session_start();
+//Check for session status and start session
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();}
+//Require necessary functions
 require_once('functions/alert.php');
 require_once('functions/users.php');
 require_once('functions/email.php');

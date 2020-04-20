@@ -50,4 +50,38 @@ function save_user($userObject){
 function save_user_reset($userObject){
     file_put_contents("db/users/". $userObject->email . ".json", json_encode($userObject));
 }
+
+function save_log($timingObject){
+    file_put_contents("db/logs/".$email. ".json",json_encode($timingObject));
+}
+
+function check_login_time(){
+    $currentTimeinSecs = time();
+    $currentDate = date('Y-m-d', $currentTimeinSecs); 
+    $currentTime=date("h:i a"); 
+    //Create a  timing object
+    $timingObject =[
+        //'id' =>$newTimeId,
+        'time'=>$currentTime,
+        'date'=>$currentDate
+        ];
+}
+
+function find_log(){
+    //To check for login date and time 
+    $allLogs = scandir("db/logs/");
+    $countLogs = count($allLogs);
+    for ($counter =0; $counter < $countLogs; $counter++){
+    $currentUser = $allLogs[$counter];
+    $email = $_SESSION['email'];
+    if($currentUser == $email. ".json"){
+        $detailString = file_get_contents("db/logs/".$currentUser);
+        $userObject = json_decode($detailString);
+        $lastlogindate = $userObject->date;
+        $lastlogintime = $userObject->time;
+    }
+    }
+}
+
+ 
 ?>

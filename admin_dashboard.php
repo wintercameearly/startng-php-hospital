@@ -10,20 +10,23 @@ if(!isset($_SESSION['isActive'])){
     <h4>All Staff</h4>
     <hr>
         <?php 
+            //Search DB for all users
             $allUsers = scandir("db/users/"); // return @array (2 filled)
             $countAllUsers = count($allUsers);
 
             for ($counter =2; $counter < $countAllUsers; $counter++){
                 $currentUser = $allUsers[$counter];
+                //Create user object for all users to be able to check details
                 $userString = file_get_contents("db/users/".$currentUser);
                 $userObject = json_decode($userString);
                 $role = $userObject->designation;
+                //Check for user role
                 if($role=="Medical Team(MT)"){
                     $firstname = $userObject->first_name ;
                     $lastname = $userObject->last_name;
                     $name = $firstname ." " . $lastname;
         ?>
-
+            <?php //Display users based on role ?>
             <ul class="list-group">
                 <li class="list-group-item"> <span class="badge badge-secondary"> Staff Name: </span>  <?php  echo $name; ; ?> |<span class="badge badge-secondary"> Role: </span>  <?php echo $userObject->designation;  ?> | <span class="badge badge-secondary">Department: </span>  <?php echo $userObject->department; ?> </li>
             </ul>
@@ -35,6 +38,7 @@ if(!isset($_SESSION['isActive'])){
     <h4>All Patients</h4>
     <hr>
         <?php
+            //Same as above, but for patients
             $allUsers = scandir("db/users/"); // return @array (2 filled)
             $countAllUsers = count($allUsers);
 

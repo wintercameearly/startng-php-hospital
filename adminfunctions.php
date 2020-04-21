@@ -63,8 +63,8 @@ if(!$name_matches[0]){
     $_SESSION['error'] = $session_error;
     header("Location: register.php");
 }else{
-        //if there are no errors
-
+    //if there are no errors
+    //Check time of event
     $currentTimeinSecs = time();
     $registrationdate = date('Y-m-d', $currentTimeinSecs); 
     $allUsers = scandir("db/users/");

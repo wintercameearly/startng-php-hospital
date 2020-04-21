@@ -39,8 +39,8 @@ You last logged in on <?php echo $lastlogindate?> at <?php echo $lastlogintime ?
 <br>
 <hr>
 <?php 
+//Display options based on user role
 if($_SESSION['role']=='Medical Team(MT)'){?>
-
     <a class="btn btn-lg btn-success" href="med_team.php" role="button">View Active Appointments</a> 
 <?php }elseif($_SESSION['role']=='Patients'){ ?>
     <a class="btn btn-lg btn-success" href="appointment.php" role="button">Book an Appointment</a> |

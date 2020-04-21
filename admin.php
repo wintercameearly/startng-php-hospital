@@ -12,14 +12,14 @@
 <form action="processAdmin.php" method="post">
         <p>
             <label for="username">Username</label>
-            <input type="email" name="username" placeholder= "Username" >
+            <input class = "form-control" type="email" name="username" placeholder= "Username" >
         </p>
         <p>
             <label for="password">Password</label>
-            <input type="password" name="password" placeholder= "Password" >
+            <input class="form-control" type="password" name="password" placeholder= "Password" >
         </p>
         <p>
-        <button type="submit">Login</button>
+        <button class="btn btn-sm btn-primary type="submit">Login</button>
         </p>
     </form>
 

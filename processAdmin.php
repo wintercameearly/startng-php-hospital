@@ -12,7 +12,7 @@ $allAdmin = scandir("db/superadmin/");
 
 $countAdmin = count($allAdmin);
 
-for ($counter =0; $counter <= $countAdmin; $counter++){
+for ($counter =0; $counter < $countAdmin; $counter++){
     $currentAdmin = $allAdmin[$counter];
 
     if( $currentAdmin == $authAdmin){

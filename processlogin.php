@@ -41,7 +41,16 @@ if($errorCount > 0){
 
             if($passwordFromDB == $passwordFromUser){
                 //Timing
-                check_login_time();
+                $currentTimeinSecs = time();
+                $currentDate = date('Y-m-d', $currentTimeinSecs); 
+                $currentTime=date("h:i a"); 
+                //Create a  timing object
+                $timingObject =[
+                    //'id' =>$newTimeId,
+                    'time'=>$currentTime,
+                    'date'=>$currentDate
+                    ];
+
                 //Login values
                 $_SESSION['loggedIn']=$userObject->id;
                 $_SESSION['email']=$userObject->email;
@@ -51,10 +60,10 @@ if($errorCount > 0){
                 $_SESSION['registrationdate']=$userObject->registrationdate;
                 //Login based on designation/Access Level
                 if($_SESSION['role']=='Medical Team(MT)') {
-                    save_log($timingObject);
+                    save_log($currentUserEmail,$timingObject);
                     redirect_to("med_team.php");
                 }elseif($_SESSION['role']=='Patients'){
-                    save_log($timingObject);
+                    save_log($currentUserEmail,$timingObject);
                     redirect_to("patients.php");  
                 }
                 die();
@@ -62,8 +71,8 @@ if($errorCount > 0){
             
         }    
     
-    $_SESSION['error'] = 'Invalid Email or Password';
-    header("Location: login.php");
+    set_alert("error",'Invalid Email or Password');
+    redirect_to("login.php");
     die();
 }
 

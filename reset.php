@@ -45,7 +45,7 @@ if(!is_user_loggedIn() && !is_token_set()){
                     <input class="form-control" type="password" name="password" placeholder= "Password" >
                 </p>
                 <p>
-                    <button class="btn btn-default" type ="submit">Reset Password</button>
+                    <button class="btn btn-danger" type ="submit">Reset Password</button>
                 </p>
             </form>
         </div>

@@ -1,6 +1,13 @@
 <?php 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once('functions/users.php');
+require_once('functions/alert.php');
+require_once('functions/redirect.php');
+require_once('functions/token.php');
+
 
 $first_nameErr =0;
 $last_nameErr = 0;
@@ -94,16 +101,16 @@ if(!$name_matches[0]){
     $userExists = find_user($email);
 
     if($userExists){
-        $_SESSION['error']="Registration failed , User already exists ";
-        header("Location: register.php");
+        set_alert("error","Registration failed , User already exists ");
+        redirect_to("register.php");
         die();
     }
     
     //saving the data into the db (folder)
     save_user($userObject);
 
-    $_SESSION["message"] = "Registration Successful, you can now login ".$first_name;
-    header("Location: login.php"); 
+    set_alert("message","Registration Successful, you can now login ");
+    redirect_to("login.php");
 
 }
 ?>

@@ -84,14 +84,16 @@ if(isset($_SESSION['loggedIn'])){
                     </select>
                 </p>
                 <p>
-                    <label for="department">Department</label>
-                    <input 
-                    <?php 
-                            if(isset($_SESSION['department'])){
-                                echo "value=" .$_SESSION['department'];
-                            }
-                        ?>
-                    class="form-control" type="text" name="department"  placeholder="Department" >
+                    <label for="department">Department</label >
+                    <select  required class="form-control" name="department" >
+                        <option value="">Select One</option>
+                        <option>General Health</option>
+                        <option>Laboratory</option>
+                        <option>Paediatrics</option>
+                        <option>Obsteatrics and Gyneacology</option>
+                        <option>Urology</option>
+                        <option>Surgery</option>
+                    </select>
                 </p>
                 <p>
                 <button class="btn btn-success" type="submit">Register</button>

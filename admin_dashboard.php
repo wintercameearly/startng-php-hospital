@@ -5,6 +5,7 @@ if(!isset($_SESSION['isActive'])){
 ?>
 
 
+
 <div class = "container">
     <h3>Admin Page: MD</h3>
     <h4>All Staff</h4>
@@ -60,6 +61,39 @@ if(!isset($_SESSION['isActive'])){
         }
         ?>
 </div>
+
+
+<div>
+<h4>All Patients with Paid Bills</h4>
+<hr>
+
+<?php
+    //Show paid bills
+    $UserBills = scandir("db/bills/"); // return @array (2 filled)
+    $countBills = count($UserBills);
+    // Count through all the bill folders
+    for ($counter =3; $counter < $countBills; $counter++){
+        $currentUser = $UserBills[$counter];
+        // Check each individual foler and get the most recent file
+        $currentUserBills = scandir("db/bills/".$currentUser."/");
+        $mostRecentBill = max($currentUserBills);
+        $billString = file_get_contents("db/bills/".$currentUser."/".$mostRecentBill);
+        $billObject = json_decode($billString);
+
+        $fullname = $billObject->fullname;
+        $amount = $billObject->amount;
+        $dt = $billObject->time;
+        $pay_date = date('Y-m-d H:i:s', $dt);
+        $appointment_dept = $billObject->appointment_dept;
+        ?>
+            <ul class="list-group">
+                <li class="list-group-item"> <span class="badge badge-secondary"> Patient Name: </span>  <?php  echo $fullname; ; ?> |<span class="badge badge-secondary"> Amount Paid: </span>  <?php echo $billObject->amount;  ?> <span class="badge badge-secondary"> Payment Date: </span>  <?php echo $pay_date  ?> </li>
+            </ul>
+        <?php 
+        }
+        ?>
+</div>
+
 
 <div class="container" >
 <h3>Add New User</h3>

@@ -30,7 +30,6 @@ if($p_department== $_SESSION['department']){
     $checker = True;
 ?>
 
-
 <!-- Just some fancy formatting for details -->
 <br>
 <div class= "container">

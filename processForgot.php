@@ -40,10 +40,10 @@ if($errorCount > 0){
             
             $subject = "Password Reset Link";
             $message = "A password request reset has been initiated from your account, if you did not initiate this request , please ignore this message, otherwise visit : localhost/snh/reset.php?token=".$token;
-
+            $type = "reset";
             file_put_contents("db/tokens/".$email. ".json", json_encode(['token'=>$token]));
 
-            send_mail($subject,$message,$email);
+            send_mail($subject,$message,$email,$type);
 
             die();
         }

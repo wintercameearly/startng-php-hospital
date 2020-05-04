@@ -34,7 +34,7 @@ $_SESSION['department']= $department;
 $allApps = scandir("db/appointments/"); // return @array (2 filled)
 $countAllApps = count($allApps);
 
-print_r($nat_app);
+//Create Object with appointment details
 $newAppId = ($countAllApps - 1);
 
     $appObject = [
@@ -47,7 +47,7 @@ $newAppId = ($countAllApps - 1);
     'complaint'=>$complaint,
     'department'=>$department,
     ];
-
+    //Store appointment and redirect to appointment page 
     $new = json_encode($appObject);
     file_put_contents("db/appointments/". $email . ".json", $new);
     set_alert("message","Your appointment has been made ");

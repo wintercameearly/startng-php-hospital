@@ -83,10 +83,9 @@ require_once('functions/token.php');
             for ($counter =0; $counter < $countAllApps; $counter++){
                 $currentApp = $allApps[$counter];
                 if($currentApp == $email. ".json"){
-                    $AppObject = json_decode(file_get_contents("db/appointment/".$currentApp));
+                    $AppObject = json_decode(file_get_contents("db/appointments/".$currentApp));
                     $AppObject->paid = "True";
                     $AppObject->amount = $amount;
-                    echo $AppObject;
                     unlink("db/appointments/.$email");
                     file_put_contents("db/appointments/".$email. ".json", json_encode($AppObject));         
                 }
@@ -100,7 +99,7 @@ require_once('functions/token.php');
             set_alert("message","Payment Successful");
 
             //Redirect to patients page
-            //redirect_to("bill.php");
+            redirect_to("bill.php");
         } else {
             //Dont Give Value and return to Failure page
             set_alert("error","Payment failed");

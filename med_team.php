@@ -13,7 +13,7 @@ if($_SESSION['role']!='Medical Team(MT)'){
 $allApps = scandir("db/appointments/"); // return @array (2 filled)
 $countAllApps = count($allApps);
 if($countAllApps > 3){
-    for ($counter =2; $counter < $countAllApps; $counter++){
+    for ($counter =3; $counter < $countAllApps; $counter++){
         $currentApp = $allApps[$counter];
         $userString = file_get_contents("db/appointments/".$currentApp );
         $userObject = json_decode($userString);
@@ -37,7 +37,7 @@ if($countAllApps > 3){
         <br>
         <div class= "container">
         <ul class="list-group">
-        <li class="list-group-item"> <span class="badge badge-secondary"> Patient Name: </span>  <?php echo $name ; ?> |<span class="badge badge-secondary"> Appointment Date: </span>  <?php echo $date;  ?> | <span class="badge badge-secondary">Initial Complaint: </span>  <?php echo $complaint ?>| <span class="badge badge-secondary">Nature of Appointment: </span>  <?php  echo $nat_app; ?><span class="badge badge-secondary"> Payment Status: </span>  <?php if($paid=="True"){echo "Paid"; echo $amount;} ?> </li>
+        <li class="list-group-item"> <span class="badge badge-secondary"> Patient Name: </span>  <?php echo $name ; ?> |<span class="badge badge-secondary"> Appointment Date: </span>  <?php echo $date;  ?> | <span class="badge badge-secondary">Initial Complaint: </span>  <?php echo $complaint ?>| <span class="badge badge-secondary">Nature of Appointment: </span>  <?php  echo $nat_app; ?><span class="badge badge-secondary"> Payment Status: </span>  <?php if($paid=="True"){echo "Paid";?> <?php echo $amount;} ?> </li>
         </ul>
         </div>
 

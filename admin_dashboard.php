@@ -15,7 +15,7 @@ if(!isset($_SESSION['isActive'])){
             $allUsers = scandir("db/users/"); // return @array (2 filled)
             $countAllUsers = count($allUsers);
 
-            for ($counter =2; $counter < $countAllUsers; $counter++){
+            for ($counter =3; $counter < $countAllUsers; $counter++){
                 $currentUser = $allUsers[$counter];
                 //Create user object for all users to be able to check details
                 $userString = file_get_contents("db/users/".$currentUser);
@@ -43,7 +43,7 @@ if(!isset($_SESSION['isActive'])){
             $allUsers = scandir("db/users/"); // return @array (2 filled)
             $countAllUsers = count($allUsers);
 
-            for ($counter =2; $counter < $countAllUsers; $counter++){
+            for ($counter =3; $counter < $countAllUsers; $counter++){
                 $currentUser = $allUsers[$counter];
                 $userString = file_get_contents("db/users/".$currentUser);
                 $userObject = json_decode($userString);

@@ -6,3 +6,6 @@ START.NG Internship PHP
 4.  Give permissions to read and write files in the folder (To make use of PHP file system)
 5.  Navigate to index.php on web browser to view first page 
 6.  Navigate to admin.php to view admin login page, set up with admin account stored directly into the db       via source code.
+Bill payment handled by bill.php -> processbill.php -> verifybill.php
+superadmin username = bambi@gmail.com
+Superadmin pw = 1234

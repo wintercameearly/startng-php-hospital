@@ -9,4 +9,6 @@ START.NG Internship PHP
 Bill payment handled by bill.php -> processbill.php -> verifybill.php
 superadmin username = bambi@gmail.com
 Superadmin pw = 1234
+
+
 Note : counters start at 3 because of Unixfilesystem creates .DSStore file

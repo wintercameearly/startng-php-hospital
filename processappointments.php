@@ -46,6 +46,8 @@ $newAppId = ($countAllApps - 1);
     'nat_app'=>$nat_app,
     'complaint'=>$complaint,
     'department'=>$department,
+    'paid'=>'',
+    'amount'=>'',
     ];
     //Store appointment and redirect to appointment page 
     $new = json_encode($appObject);

@@ -47,7 +47,7 @@ require_once('functions/token.php');
 
         if (($chargeResponsecode == "00" || $chargeResponsecode == "0") && ($chargeAmount == $amount)  && ($chargeCurrency == $currency)) {
             // Users could have made multiple transactions
-            // Create a timestamp and use it to name each individual transaction in the db, inside a folder with thier email 
+            // Create a timestamp and use it to in each individual transaction in the db, inside a folder with thier email 
             $currentTime = time();
             // Take user details from session 
             $fullname= $_SESSION['fullname'];
@@ -55,6 +55,7 @@ require_once('functions/token.php');
             $role= $_SESSION['role'];
             $amount= $_SESSION['amount'];
             $appointment_dept = $_SESSION['appointment_dept'];
+            //Creat an object that stores user details 
             $appointmentObject = ['fullname'=>$fullname,
                                   'email'=>$email,
                                   'role'=>$role,
@@ -65,8 +66,9 @@ require_once('functions/token.php');
             // Create an id for each bill
             $UserBills = scandir("db/bills/".$email."/"); // return @array (2 filled)
             $countBills = count($UserBills);
-            
+            // Bill Id
             $newBillId = ($countBills - 1);
+
             // Do some checks and add a log of the bill, based on the timestamp
             if(!is_dir("db/bills/".$email)){
                 mkdir("db/bills/".$email);
@@ -75,7 +77,20 @@ require_once('functions/token.php');
             }else{
                 file_put_contents("db/bills/".$email."/".$newBillId.".json",json_encode($appointmentObject));
             }
-
+            //Add paid block to users appointment file 
+            $allApps = scandir("db/appointments/"); // return @array (2 filled)
+            $countAllApps = count($allApps);
+            for ($counter =0; $counter < $countAllApps; $counter++){
+                $currentApp = $allApps[$counter];
+                if($currentApp == $email. ".json"){
+                    $AppObject = json_decode(file_get_contents("db/appointment/".$currentApp));
+                    $AppObject->paid = "True";
+                    $AppObject->amount = $amount;
+                    echo $AppObject;
+                    unlink("db/appointments/.$email");
+                    file_put_contents("db/appointments/".$email. ".json", json_encode($AppObject));         
+                }
+            } 
             // Send a success email to the user 
             $subject = "Successful Payment";
             $message = "Your recent payment for".$appointment_dept."was successful";
@@ -83,10 +98,13 @@ require_once('functions/token.php');
             $headers = "me";
             mail($email,$subject,$message,$headers);
             set_alert("message","Payment Successful");
+
             //Redirect to patients page
-            redirect_to("bill.php");
+            //redirect_to("bill.php");
         } else {
             //Dont Give Value and return to Failure page
+            set_alert("error","Payment failed");
+            redirect_to("bill.php");
         }
     }
         else {
